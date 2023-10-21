@@ -1,2 +1,4 @@
 .env
 .venv
+error.log
+__pychache__
