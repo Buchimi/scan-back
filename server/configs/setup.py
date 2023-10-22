@@ -11,8 +11,8 @@ def connect_db():
     Makes connection to database and returns the client connection
     """
     load_dotenv()
-    USER = os.getenv("USER_ROOT_MONGODB")
-    PASS = os.getenv("PASS_ROOT_MONGODB")
+    USER = os.getenv("USER_MONGODB")
+    PASS = os.getenv("PASS_MONGODB")
     uri = f"mongodb+srv://{USER}:{PASS}@scan-back-cluster.eoldn4r.mongodb.net/?retryWrites=true&w=majority"
     client = MongoClient(uri, server_api=ServerApi('1'))
     connect(host=uri)

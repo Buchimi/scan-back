@@ -1,22 +1,19 @@
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
-
 from skimage.filters import threshold_local
 from PIL import Image
 import argparse
 import re
-
+import numpy as np
 import warnings
 
 # Filter skimage-specific warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
+# instead of doing this. This needs to be an object with a function that returns json of 
 parser = argparse.ArgumentParser(description='An example Python script with command-line arguments.')
-
 parser.add_argument('filename', type=str, help='The name of the file to process')
-
-# Parse the arguments
 args = parser.parse_args()
 
 # Access the parsed filename
@@ -24,6 +21,8 @@ file_name = args.filename
 
 img = Image.open(file_name)
 img.thumbnail((800,800), Image.ANTIALIAS)
+
+
 
 def resize_img(img, scale):
     img = np.array(img)
@@ -122,7 +121,7 @@ def wrap_perspective(img, rect):
     # warp the perspective to grab the screen
     return cv2.warpPerspective(img, M, (maxWidth, maxHeight))
 
-import numpy as np
+
 scanned = wrap_perspective(original.copy(), contour_to_rect(receipt_contour))
 # plt.figure(figsize=(16,10))
 
@@ -151,8 +150,6 @@ output.save('cropped.png')
 import easyocr
 reader = easyocr.Reader(['en'])
 result = reader.readtext('cropped.png', detail=0)
-
-print(f'This is the result of the model: {result}')
 
 pattern = r'\d{12}'
 money_pattern = r'[0-9]+\.[0-9][0-9] '
