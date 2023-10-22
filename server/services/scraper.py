@@ -2,23 +2,11 @@ from configs.setup import connect_web_proxy
 from urllib.parse import quote
 from selenium.webdriver.common.by import By
 
-
 class Scraper():
     def __init__(self):
         self.driver = connect_web_proxy()
 
-    def test_scraper(self):
-        self.driver.get('https://example.com')
-
-        print('Taking page screenshot to file page.png')
-        self.driver.get_screenshot_as_file('./page.png')
-
-        print('Navigated! Scraping page content...')
-        html = self.driver.page_source
-
-        print(html)
-
-    def scrape_item_price(self, name, price):
+    def scrape_item_price(self, name):
         """
         given the name of an item and its recipt
         price scrape the price of it from walmart.com
@@ -40,8 +28,8 @@ class Scraper():
         price_element = self.driver.find_element(By.XPATH, '//*[@id="maincontent"]/section/main/div[2]/div[2]/div/div[2]/div/div[2]/div/div/span[1]/span[2]/span')
         price = price_element.text
 
-        print(f'This is the price of the thing {price}')
+        # remove the $
+        price = price[1:]
+        price = float(price)
 
-        # return the price
-        # price = {}
         return price
