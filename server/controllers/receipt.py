@@ -1,10 +1,13 @@
+from crypt import methods
 from flask import Blueprint, request, jsonify
-
+from models.receipt import Receipt
 reciept_bp = Blueprint('receipt', __name__)
 
 @reciept_bp.route('/reciept/<id>', methods=['GET'])
 def get_receipt(id):
     # use the db connection to get the receipt
+    return Receipt.objects(id=id).to_json()
+
     '''
     User model
     Fields
@@ -52,3 +55,18 @@ def get_receipt(id):
     get endpoint for receipt
     '''
     pass
+
+@reciept_bp.route("/reciept/<id>", methods=['POST'])
+def save_receipt(id):
+    data = request.get_json()
+
+    receipt = Receipt.from_json(data)
+    receipt.id = id
+    receipt.owner = "bee"
+    receipt.save()
+    
+    return receipt.to_json()
+
+@reciept_bp.route("/reciept/recent", methods=["GET"])
+def getLatestTransactions():
+    return Receipt.objects().order_by("-when").limit(6).to_json()
