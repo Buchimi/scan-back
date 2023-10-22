@@ -1,5 +1,6 @@
-from pydantic import BaseModel
+from mongoengine import Document, StringField, FloatField
 
-class User(BaseModel):
-    username : str
+class User(Document):
+    username: StringField
+    savings: FloatField
     

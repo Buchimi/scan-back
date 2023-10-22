@@ -3,7 +3,7 @@ from flask import Blueprint, request, jsonify
 reciept_bp = Blueprint("receipt", __name__)
 
 @reciept_bp.route("/reciept/<id>", methods=["POST"])
-def getid():
+def get_id():
     '''
 
     We need the user object 

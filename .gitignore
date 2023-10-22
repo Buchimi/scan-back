@@ -1,6 +1,26 @@
+__pycache__/
+*.pyc
+*.pyo
+
+venv
 .env
-.venv
-error.log
-server/__pychache__
-**/__pychache__
-server/server
+
+# Dependency directories
+node_modules/
+.venv/
+env/
+env-*/
+
+# Compiled Python files
+*.pyc
+*.pyo
+
+# IDE-specific files and directories
+.vscode/
+.idea/
+*.swp
+
+# OS-specific files and directories
+.DS_Store
+Thumbs.db
+
