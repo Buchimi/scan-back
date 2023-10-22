@@ -11,7 +11,8 @@ We made use of Streamlit to create graph information for our web interface
 React Native and Expo powers the mobile application
 Flask is used as our API driver. 
 Mongodb is our database infrastructure.
-Optical Character Recognition with EdenAI API and OpenCV to dewarp and process images of receiptss 
+Optical Character Recognition with EdenAI API and OpenCV to dewarp and process images of receipts
+We used Selenium for web scraping
 
 ## Where we go from here
 - We could automate the process of getting a cashback from Walmart or other large retailers by exposing our API to their software
