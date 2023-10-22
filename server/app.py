@@ -10,6 +10,7 @@ db = Client()
 
 # create the scraper
 scraper = Scraper()
+scraper.scrape_item_price(name="KNDR BLEND", price=4.22)
 
 app.register_blueprint(upload_image_bp)
 
