@@ -1,4 +1,4 @@
 .env
 .venv
 error.log
-__pychache__
+server/__pychache__
