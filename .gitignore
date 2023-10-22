@@ -2,3 +2,5 @@
 .venv
 error.log
 server/__pychache__
+__pychache__
+server/server
