@@ -1,6 +1,8 @@
 from configs.setup import connect_db
-from models import receipt_item, user
+from ..models import user, receipt, receipt_item
 import mongoengine 
+
+
 
 class Client():
     def __init__(self):

@@ -133,19 +133,14 @@ class ML_model():
                             }
             pre_json_array.append(data_to_add)
 
-        # with open("my_data.json", "w") as json_file:
-        #     json.dump(pre_json_array, json_file)
-            
-        # with open('my_data.json', 'r') as json_file:
-        #     test_data = json.load(json_file)
-
         return pre_json_array
     
-image = "monster.jpg"
 
-with open(image, "rb") as file:
-    image_data = file.read()
+# image = "monster.jpg"
+
+# with open(image, "rb") as file:
+#     image_data = file.read()
     
-img = base64.b64encode(image_data)
-model = ML_model()
-print(model.get_receipt_items(img))
+# img = base64.b64encode(image_data)
+# model = ML_model()
+# print(model.get_receipt_items(img))
