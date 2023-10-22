@@ -3,12 +3,19 @@ import { FAB, Text } from "react-native-paper";
 import { Camera, CameraType } from "expo-camera";
 import { useState } from "react";
 import { Button, TouchableOpacity, View } from "react-native";
+import { useSwipe } from "@/hooks/swipehook";
 
 type props = {
   onPictureTaken?: (payload: string) => void;
+  onToggleLeft?: () => void;
+  onToggleRight?: () => void;
 };
 
-export default function App({ onPictureTaken }: props) {
+export default function App({
+  onPictureTaken,
+  onToggleLeft,
+  onToggleRight,
+}: props) {
   const [cam, setCamera] = useState<Camera>();
   const [camReady, setCamReady] = useState<boolean>(false);
   const [type, setType] = useState(CameraType.back);
@@ -16,7 +23,7 @@ export default function App({ onPictureTaken }: props) {
 
   const [image, setImage] = useState<string>();
   const [showImage, setShowImage] = useState<boolean>(false);
-
+  const { onTouchStart, onTouchEnd } = useSwipe(onToggleLeft, onToggleRight);
   if (!permission) {
     // Camera permissions are still loading
     return <View />;
@@ -25,7 +32,11 @@ export default function App({ onPictureTaken }: props) {
   if (!permission.granted) {
     // Camera permissions are not granted yet
     return (
-      <View style={styles.container}>
+      <View
+        style={styles.container}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
         <Text style={{ textAlign: "center" }}>
           We need your permission to show the camera
         </Text>
@@ -41,20 +52,20 @@ export default function App({ onPictureTaken }: props) {
   }
 
   return (
-    <View style={styles.container}>
+    <View
+      style={styles.container}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+    >
       {!showImage && (
         <Camera
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
           style={styles.camera}
           type={type}
           ref={(cam) => setCamera(cam)}
           onCameraReady={() => setCamReady(true)}
-        >
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
-              <Text style={styles.text}>Flip Camera</Text>
-            </TouchableOpacity>
-          </View>
-        </Camera>
+        ></Camera>
       )}
       {showImage && (
         <Image
@@ -67,6 +78,7 @@ export default function App({ onPictureTaken }: props) {
       <FAB
         icon="plus"
         style={styles.FAB}
+        color="white"
         onPress={async () => {
           if (camReady) {
             const pic = await cam.takePictureAsync({ base64: true });
@@ -114,5 +126,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: "5%",
     right: "43%",
+    backgroundColor: "white",
   },
 });
