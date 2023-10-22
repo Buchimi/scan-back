@@ -4,6 +4,7 @@ from selenium.webdriver import Remote, ChromeOptions
 from selenium.webdriver.chromium.remote_connection import ChromiumRemoteConnection
 from dotenv import load_dotenv
 import os
+from mongoengine import connect
 
 def connect_db():
     """
@@ -14,7 +15,7 @@ def connect_db():
     PASS = os.getenv("PASS_ROOT_MONGODB")
     uri = f"mongodb+srv://{USER}:{PASS}@scan-back-cluster.eoldn4r.mongodb.net/?retryWrites=true&w=majority"
     client = MongoClient(uri, server_api=ServerApi('1'))
-
+    connect(host=uri)
     try:
         client.admin.command('ping')
         print("Pinged your deployment. You successfully connected to MongoDB!")
