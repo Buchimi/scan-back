@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import Blueprint, request, jsonify
 from models.receipt import Receipt
 reciept_bp = Blueprint('receipt', __name__)

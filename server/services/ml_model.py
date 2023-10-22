@@ -135,7 +135,6 @@ class ML_model():
 
         return pre_json_array
     
-
 # image = "monster.jpg"
 
 # with open(image, "rb") as file:

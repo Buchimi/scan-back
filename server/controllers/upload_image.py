@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
-from ..services.ml_model import ML_model
-from ..models import receipt_item
+from services.ml_model import ML_model
+from models import receipt_item
 
 upload_image_bp = Blueprint('upload_image', __name__)
 
