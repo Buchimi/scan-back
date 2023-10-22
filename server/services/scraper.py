@@ -31,5 +31,5 @@ class Scraper():
         # remove the $
         price = price[1:]
         price = float(price)
-
+        
         return price

@@ -22,8 +22,6 @@ file_name = args.filename
 img = Image.open(file_name)
 img.thumbnail((800,800), Image.ANTIALIAS)
 
-
-
 def resize_img(img, scale):
     img = np.array(img)
     width = int(img.shape[1] * scale / 100)
