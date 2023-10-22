@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+from services import ml_model
 
 upload_image_bp = Blueprint('upload_image', __name__)
 
@@ -7,6 +8,8 @@ def upload_image():
     data = request.get_json()
     base64_image = data.get('image_data')
 
+    receipt_data = ml_model(base64_image)
+    print(receipt_data)
     # process the photo
     # do business logic with the photo (machine learning part)
     # and database database things
