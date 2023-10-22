@@ -40,3 +40,7 @@ def connect_web_proxy():
     # The program will hang if the driver does not make a connection (sad face)
     return driver
 
+def get_model_api_key():
+    load_dotenv()
+    return os.getenv("MODEL_API_KEY")
+
