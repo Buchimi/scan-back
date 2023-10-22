@@ -1,6 +1,6 @@
 from configs.setup import connect_web_proxy
 from urllib.parse import quote
-import selenium
+from selenium.webdriver.common.by import By
 
 
 class Scraper():
@@ -27,26 +27,21 @@ class Scraper():
 
         # get the url of searching the item
         search_url = 'https://www.walmart.com/search?q=' + quote(f'{name}')
-        # print(f'This is the serach url {search_url}')
-
         self.driver.get(search_url)
 
-        source = self.driver.page_source
-        print(source)
+        # get the link of the first item
+        link = self.driver.find_element(By.XPATH, '//*[@id="maincontent"]/main/div/div[2]/div/div/div[1]/div[2]/div/section/div/div[1]/div/div/a')
+        link.click()
 
-        # go to walmart.com
-        # self.driver.get('https://www.walmart.com/')
+        # wait until the webpage is loaded after clicking
+        self.driver.implicitly_wait(10)  # Wait up to 10 seconds
 
-        # enter the name of the item
-        # input_form = self.driver.get(By.)
-        # input_form.sendKeys()
+        # get the price from the item webpage
+        price_element = self.driver.find_element(By.XPATH, '//*[@id="maincontent"]/section/main/div[2]/div[2]/div/div[2]/div/div[2]/div/div/span[1]/span[2]/span')
+        price = price_element.text
 
-        # press the search button
-
-        # selct the first result (if it exists)
-
-        # get the price from the item webpate
+        print(f'This is the price of the thing {price}')
 
         # return the price
-        price = {}
+        # price = {}
         return price
