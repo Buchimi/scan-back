@@ -1,5 +1,5 @@
 from flask import Flask
-from routes.upload_image import upload_image_bp
+from controllers.upload_image import upload_image_bp
 from services.db import Client
 from services.scraper import Scraper
 
