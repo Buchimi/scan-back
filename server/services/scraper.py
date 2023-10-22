@@ -32,5 +32,6 @@ class Scraper():
 
         # get the price from the item webpate
 
-        # return the price 
+        # return the price
+        price = {}
         return price
