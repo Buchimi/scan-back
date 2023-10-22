@@ -1,13 +1,12 @@
-# from flask import Flask
 # from flask_migrate import Migrate
 # from routes.blueprint import blueprint
-# from models.machine import db
 from flask import Flask, jsonify, request
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from dotenv import load_dotenv
 import os
 
+load_dotenv()
 username = os.getenv("USER_MONGODB")
 password = os.getenv("PASS_MONGODB")
 mongo_uri = uri = f"mongodb+srv://{username}:{password}@scan-back-cluster.eoldn4r.mongodb.net/?retryWrites=true&w=majority"

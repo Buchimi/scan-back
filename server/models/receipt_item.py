@@ -6,3 +6,5 @@ class recept_item:
     id: int
     price: float
     
+# pydantic json into class
+# benie 
