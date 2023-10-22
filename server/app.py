@@ -1,5 +1,5 @@
 from flask import Flask
-from routes.upload_image import upload_image
+from routes.upload_image import upload_image_bp
 from services.db import Client
 from services.scraper import Scraper
 
@@ -11,7 +11,7 @@ db = Client()
 # create the scraper
 scraper = Scraper()
 
-# app.register_blueprint(upload_image_bp)
+app.register_blueprint(upload_image_bp)
 
 if __name__ == '__main__':
     app.run()
