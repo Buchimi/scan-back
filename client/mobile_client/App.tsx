@@ -8,6 +8,7 @@ import { getUploadURI } from "@/provider/serverprovider";
 import { GraphIcon, StoreIcon } from "@/icons/icons";
 import { useSwipe } from "@/hooks/swipehook";
 import { View } from "react-native";
+import Store from "src/pages/Store";
 const CameraRoute = ({
   onToggleLeft,
   onToggleRight,
@@ -35,7 +36,11 @@ const DataRoute = () => (
     <AnalyticsPage />
   </SafeArea>
 ); //<AnalyticsPage />;
-const StoreRoute = () => <Text>Hello</Text>;
+const StoreRoute = () => (
+  <SafeArea>
+    <Store />
+  </SafeArea>
+);
 
 const SafeArea = ({ children }: { children?: JSX.Element; style?: any }) => (
   <SafeAreaView>{children}</SafeAreaView>
