@@ -1,39 +1,17 @@
-# from flask_migrate import Migrate
-# from routes.blueprint import blueprint
-from flask import Flask, jsonify, request
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
-from dotenv import load_dotenv
-import os
+from flask import Flask
+from routes.upload_image import upload_image
+from services.db import Client
+from services.scraper import Scraper
 
-load_dotenv()
-username = os.getenv("USER_MONGODB")
-password = os.getenv("PASS_MONGODB")
-mongo_uri = uri = f"mongodb+srv://{username}:{password}@scan-back-cluster.eoldn4r.mongodb.net/?retryWrites=true&w=majority"
+app = Flask(__name__)
 
-def create_app():
-    app = Flask(__name__) 
-    # app.config.from_object('config')  # Configuring from Python Files
-    return app
+# make database connection
+db = Client()
 
-app = create_app()
-client = MongoClient(uri, server_api=ServerApi('1'))
+# create the scraper
+scraper = Scraper()
 
-@app.route('/upload_image', methods=['POST'])
-def upload_image():
-    data = request.get_json()
-    base64_image = data.get('image_data')
-
-    # process the photo
-    # do business logic with the photo (machine learning part)
-    # and database database things
-
-    # list of savings that can be applied to receipt
-    savings = {"This is a dictionary that contains the savnigs": "These are the savings that a user will have"}
-    return jsonify(savings)
-
-# app.register_blueprint(blueprint)
-# migrate = Migrate(app, db)  # Initializing the migration
+# app.register_blueprint(upload_image_bp)
 
 if __name__ == '__main__':
     app.run()
