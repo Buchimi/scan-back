@@ -1,3 +1,5 @@
+from flask import Flask
+
 @app.route('api/upload', methods=['POST'])
 def upload_image():
     # Get the base64 encoded image from the request payload
