@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Button, TouchableOpacity, View } from "react-native";
 
 type props = {
-  onPictureTaken?: () => void;
+  onPictureTaken?: (payload: string) => void;
 };
 
 export default function App({ onPictureTaken }: props) {
@@ -72,7 +72,7 @@ export default function App({ onPictureTaken }: props) {
             const pic = await cam.takePictureAsync({ base64: true });
             console.log("cam has cammed");
 
-            onPictureTaken();
+            onPictureTaken(pic.base64);
 
             setImage(pic.base64);
             setShowImage(true);
