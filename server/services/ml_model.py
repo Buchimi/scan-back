@@ -8,6 +8,22 @@ class ML_model():
         pass
         
     def get_receipt_items(self, base64_image):
+        """
+        params:
+            - img
+            A base 64 encoded image to be inferences
+
+        return: 
+            python dictionary of the receipt items
+
+        TODO - make this function have 2 subroutines
+        1) preprocess image
+        2) make inference
+
+        Also remove the generation of unneeded files
+        or at least remove the files after they are
+        created
+        """
         decoded_bytes = base64.b64decode(base64_image)
         output_path = 'output.jpg'  # Specify the path and filename for the output image
 
